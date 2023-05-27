@@ -19,7 +19,7 @@ class {{ class}} extends Controller
     
 public function index(Request  $request) {
     try {
-      $pageSize = $request->query('pageSize');
+      $perPage = $request->query('perPage');
       $currentPage = $request->query('page');
       $search = $request->query('q');
       $sortBy = $request->query('sortBy');
@@ -43,7 +43,7 @@ public function index(Request  $request) {
       }
       
       if($currentPage) {
-        $data = new \App\Http\Resources\\{{ classify name}}Collection($data->paginate($pageSize));
+        $data = new \App\Http\Resources\\{{ classify name}}Collection($data->paginate($perPage));
       } else {
         $data = ['data' => {{ classify name}}Resource::collection($data->get())];
       }
